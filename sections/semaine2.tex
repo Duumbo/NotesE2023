@@ -1,0 +1,125 @@
+\documentclass{subfiles}[../main.tex]
+
+\begin{document}
+    \section{Semaine 2} % (fold)
+    \label{sec:Semaine 2}
+        \subsection{Mardi le 9 Mai} % (fold)
+        \label{sub:Mardi le 9 Mai}
+
+            % Journée du mardi le 9 mai
+            \subsubsection{Changement de base} % (fold)
+            \label{sec:Changement de base}
+            Soit effectuons le changement de base de l'Hamiltonien de Hubbard.
+            \begin{align}
+                H=U\sum_{i}n_{i\uparrow}n_{i\downarrow}
+                -\sum_{<i,j>,\sigma}t_{ij}\qty(
+                    c^\dagger_{i,\sigma}c_{j,\sigma}
+                    +
+                    c^\dagger_{j,\sigma}c_{i,\sigma}
+                )
+            \end{align}
+            Les transformées de Fourrier des opérateurs création et
+            annihilation sont
+            \begin{align}
+                c^\dagger_{i,\bm{k}}&=\frac{1}{\sqrt{N}}\sum_{\bm{r}}
+                e^{i\bm{k}\cdot\bm{r}}
+                c^\dagger_{i,\bm{r}}\\
+                c^\dagger_{i,\bm{r}}&=\frac{1}{\sqrt{N}}\sum_{\bm{k}}
+                e^{-i\bm{k}\cdot\bm{r}}
+                c^\dagger_{i,\bm{r}}
+            \end{align}
+            Allons-y terme à terme.
+
+            % subsubsection Changement de base (end)
+            \subsubsection{Hubbard Intro Old} % (fold)
+            \label{sec:Hubbard Intro Old}
+            % Problème 1:
+            \begin{problem}
+                Supposons que $N=2$.
+            Construire une représentation matricielle
+            explicite, dans l'espace de Hilbert global
+            de dimension $2^2=4$, des opérateurs suivants:
+            $c_1,c_2,n_1,n_2$
+            \end{problem}
+
+            % Problème 2:
+            \begin{problem}
+                Supposons que $N=2$ et
+            considérons un état général à un électron
+            $\ket{\psi}=\alpha\ket{1}+\beta\ket{2}$,
+            où $\abs{\alpha}^2+\abs{\beta}^2=1$. Quelle
+            est la probabilité que l'électron soit sur
+            l'ion no $1$? Quelles sont les valeurs moyennes
+            de $n_1$ et $n_2$?
+            \end{problem}
+
+            % Problème 3:
+            \begin{problem}
+                Considérer un modèle
+            à $N=4$ sites et comportant $M=4$ électrons,
+            avec $t=0$. Trouver les deux niveaux d'énergie
+            les plus bas avec les états correspondants.
+            Combien y en a-t-il pour chacun des deux
+            niveaux?
+            \end{problem}
+
+            % Problème 4:
+            \begin{problem}
+                Démontrer la relation 22
+            et ensuite que les deux équations de 20 sont
+            compatibles.
+            \end{problem}
+
+            % Problème 5:
+            \begin{problem}
+                Démontrer que les opérateurs
+                $\widetilde{c_\sigma}(\bm{k})$ et
+                $\widetilde{c_\sigma}(\bm{k})$ satisfont
+                aux relations d'anticommutation suivantes:
+                \begin{align}
+                    &\{\widetilde{c}_\sigma(\bm{k}),
+                    \widetilde{c}_{\sigma'}(\bm{k'})\}=0
+                    &&\{\widetilde{c}_\sigma(\bm{k}),
+                    \widetilde{c}_{\sigma'}^\dagger(\bm{k'}
+                    )\}=\delta_{\sigma\sigma'}
+                    \delta_{\bm{k}\bm{k'}}
+                \end{align}
+            \end{problem}
+
+            %Problème 6:
+            \begin{problem}
+                Démontrer que l'opérateur $K$ s'exprime
+                comme suit en fonction des opérateurs
+                $\widetilde{c_\sigma}(\bm{k})$ et
+                $\widetilde{c_\sigma}^\dagger(\bm{k})$:
+                \begin{align}
+                    &K=-2t\sum_{\bm{k}\sigma}
+                    \cos(k)n_\sigma(\bm{k})
+                    &&n_\sigma(\bm{k})\equiv
+                    \widetilde{c}_\sigma^\dagger(\bm{k})
+                    \widetilde{c}_\sigma(\bm{k})
+                \end{align}
+            \end{problem}
+
+            %Problème 7:
+            \begin{problem}
+                Démontrer que les opérateurs de nombre
+                $n_\sigma(\bm{k})$ associés à des spins ou
+                des nombres d'ondes différents commutent.
+            \end{problem}
+
+            %Problème 8:
+            \begin{problem}
+                Quel est l'état fondamental d'un système de
+                $N$ électrons installés sur un anneau de
+                $N$ sites? On est à demi-remplissage, car
+
+            \end{problem}
+
+            % subsubsection Hubbard Intro Old (end)
+
+
+        % subsection Mardi le 9 Mai (end)
+
+    % section Semaine 2 (end)
+\end{document}

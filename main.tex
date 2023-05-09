@@ -1,0 +1,44 @@
+\documentclass[12pt, twoside]{article}
+\usepackage{colors,style,commands}
+
+\MasterColor  {YALE1_MASTER}
+
+% Title page variables
+\Titre        {Le travail}
+\SousTitre    {Précision(s)}
+
+\NomCours     {Nom du cours}
+\CodeCours    {code}
+
+\Nom          {Votre nom complet}
+
+\Enseignant   {L'enseignant}
+
+\Emblem       {BISHOP} % Choose (UDS, UQTR, BISHOP, MCGILL, ULAVAL, UDEM)
+\University   {Bishop's University}
+\Faculte      {la faculté}
+\Departement  {le département}
+\Date         {\today}
+
+
+\begin{document}
+
+    \Language{french}
+
+    \subfile{TitlePage}
+
+    \tableofcontents
+
+    \clearpage
+
+    \subfile{sections/introduction}
+
+    \subfile{sections/semaine2.tex}
+
+    \clearpage
+
+    \pagestyle{plain} % Remove header for references
+    \bibliography{refs}
+
+\end{document}
+

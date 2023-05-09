@@ -1,0 +1,10 @@
+% Removing titlerule from section: Introduction
+\titleformat{\section}{
+\normalfont\Large\bfseries{
+  \color{\MasterColor}\titlerule[0.0pt]
+  }
+}{\thesection}{1em}{}
+
+\section*{Introduction} \label{sec: intro}
+\blindtext
+
