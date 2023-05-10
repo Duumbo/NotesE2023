@@ -267,13 +267,47 @@
                 Quel est l'état fondamental d'un système de
                 $N$ électrons installés sur un anneau de
                 $N$ sites? On est à demi-remplissage, car
+                la moitié du nombre maximum d'électrons ($2N$) sont présents.
+            \end{problem}
+            À demi-remplissage, l'état feromagnétique est l'état fondamental,
+            comme c'est ainsi que l'on minimise le terme d'interaction, en
+            limitant les paires d'électrons sur le même site. De plus, cette
+            configuration minimise le terme de saut, car les électrons ne
+            peuvent pas sauter aux sites voisins. On connait déjà le
+            fondamental du terme $K$ à demi-remplissage, soit
+            \begin{align}
+                \widetilde{c}^\dagger_{\sigma_1}(k_1)(\cdots)
+                \widetilde{c}^\dagger_{\sigma_N}(k_N)\ket{0}
+            \end{align}
+            un état propre de $K$. Sachant qu'il y a $N$ valeurs possibles de
+            $k$ dans la première zone de Brillouin, alors l'énergie, pourvue
 
+            %Problème 9:
+            \begin{problem}
+                Quelle est la probabilité de trouver deux électrons sur un même
+                site dans l'état fondamental trouvé ci-dessus?
             \end{problem}
 
             % subsubsection Hubbard Intro Old (end)
 
 
         % subsection Mardi le 9 Mai (end)
+
+        \subsection{Mercredi le 10 Mai}
+            Deux problèmes à faire pour cette semaine, soit il faut montrer
+            l'orthonormalité de l'ordre normal, et écrire un code qui diagonalise
+            par bloc l'hamiltonien. Commençons par montrer que l'ordre normal
+            est orthonormé.
+            \subsubsection{Orthonormalité de l'ordre normal.} % (fold)
+            \label{sec:orthonormalité de l'ordre normal.}
+                Soit l'ordre normal
+                \begin{align}
+                    c^\dagger_{1\uparrow}c^\dagger_{2\uparrow}(\cdots)
+                    c^\dagger_{1\downarrow}c^\dagger_{2\downarrow}(\cdots)
+                    \ket{\{0\}^N}
+                \end{align}
+            
+            % subsubsection orthonormalité de l'ordre normal. (end)
 
     % section Semaine 2 (end)
 \end{document}
