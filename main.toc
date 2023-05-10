@@ -1,6 +1,0 @@
-\babel@toc {french}{}\relax 
-\babel@toc {french}{}\relax 
-\contentsline {section}{\numberline {1}Semaine 2}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Mardi le 9 Mai}{3}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Changement de base}{3}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Hubbard Intro Old}{3}{subsubsection.1.1.2}%
