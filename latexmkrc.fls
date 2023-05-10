@@ -1,5 +1,0 @@
-PWD /home/dumbo/Documents/notes
-INPUT /usr/share/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/dumbo/.config/latexmk/latexmkrc
-OUTPUT latexmkrc.log
