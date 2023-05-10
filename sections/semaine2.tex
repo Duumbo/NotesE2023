@@ -41,6 +41,59 @@
             de dimension $2^2=4$, des opérateurs suivants:
             $c_1,c_2,n_1,n_2$
             \end{problem}
+            Soit la base de l'espace de Hilbert
+            \begin{align}
+                \left\{
+                \ket{00},\ket{01},\ket{10},\ket{11}
+                    \right\}
+            \end{align}
+            On sait que $c_1$ détruit le premier site, tandis que $c_2$ détruit
+            le second, on peut donc les écrires en terme de mapping entre les
+            états
+            \begin{align}
+                c_1:\quad\left\{
+                    \ket{00}\rightarrow\bm{0},
+                    \ket{01}\rightarrow\ket{00},
+                    \ket{10}\rightarrow\bm{0},
+                    \ket{11}\rightarrow\ket{10}
+                    \right\}\\
+                c_2:\quad\left\{
+                    \ket{00}\rightarrow\bm{0},
+                    \ket{01}\rightarrow\bm{0},
+                    \ket{10}\rightarrow\ket{00},
+                    \ket{11}\rightarrow\ket{01}
+                    \right\}
+            \end{align}
+            Et donc si on écrit les états suivants
+            \begin{align}
+                \ket{00}&=\begin{pmatrix}
+                    1\\0\\0\\0
+                \end{pmatrix}\\
+                \ket{01}&=\begin{pmatrix}
+                    0\\1\\0\\0
+                \end{pmatrix}\\
+                \ket{10}&=\begin{pmatrix}
+                    0\\0\\1\\0
+                \end{pmatrix}\\
+                \ket{11}&=\begin{pmatrix}
+                    0\\0\\0\\1
+                \end{pmatrix}
+            \end{align}
+            On obtient les matrices
+            \begin{align}
+                c_1&=\begin{pmatrix}
+                    0&1&0&0\\
+                    0&0&0&0\\
+                    0&0&0&1\\
+                    0&0&0&0
+                \end{pmatrix}\\
+                c_2&=\begin{pmatrix}
+                    0&0&1&0\\
+                    0&0&0&1\\
+                    0&0&0&0\\
+                    0&0&0&0
+                \end{pmatrix}
+            \end{align}
 
             % Problème 2:
             \begin{problem}
@@ -52,6 +105,16 @@
             l'ion no $1$? Quelles sont les valeurs moyennes
             de $n_1$ et $n_2$?
             \end{problem}
+            La probabilité d'être sur le site $1$ est
+            \begin{align}
+                \abs{\braket{1}{\psi}}^2&=\abs{\alpha}^2
+            \end{align}
+            Les valeurs moyennes sont
+            \begin{align}
+                \ket{1}=\ket{01}\quad&\quad\ket{2}=\ket{10}\\
+                \bra{\psi}n_1\ket{\psi}&=\abs{\alpha}^2\\
+                \bra{\psi}n_2\ket{\psi}&=\abs{\beta}^2
+            \end{align}
 
             % Problème 3:
             \begin{problem}
@@ -62,6 +125,15 @@
             Combien y en a-t-il pour chacun des deux
             niveaux?
             \end{problem}
+            Pour $t-0$, le Hamiltonien de Hubbard devient
+            \begin{align}
+                H=V&=U\sum_{i}n_{i\uparrow}n_{i\downarrow}
+            \end{align}
+            Avec $M=3$ électrons, le fondamental est celui que les trois
+            électrons sont sur des sites différents, dégénérés plusieurs fois
+            avec une énergie de $E=0$. Le premier état excité est celui qui
+            a un site avec deux électrons de spins opposés, avec une énergie de
+            $E=U$, $4$ fois dégénéré.
 
             % Problème 4:
             \begin{problem}
@@ -69,6 +141,17 @@
             et ensuite que les deux équations de 20 sont
             compatibles.
             \end{problem}
+            Commençons par $r=0$, soit
+            \begin{align}
+                \sum_{k}e^{ikr}=\sum_k 1=N
+            \end{align}
+            Ensuite, allons-y avec $r\neq 0$.
+            \begin{align}
+                \sum_{j=0}^{N-1}e^{ir(2\pi j/N)}&=\frac{1-e^{2\pi ir}}
+                {1-e^{2\pi ir/N}}
+            \end{align}
+            Comme $r$ est un point du réseau, alors il s'agit d'un entier. Le
+            numérateur s'annule donc, ce qu'il fallait démontrer.
 
             % Problème 5:
             \begin{problem}
@@ -85,6 +168,38 @@
                     \delta_{\bm{k}\bm{k'}}
                 \end{align}
             \end{problem}
+            Partons des relations d'anti-commutation des opérateurs définis
+            précédemment
+            \begin{align}
+                &\{c_{i\sigma},c_{j,\sigma'}\}=0
+                &&\{c^\dagger_{i\sigma},c^\dagger_{j,\sigma'}\}=0
+                &&\{c_{i\sigma},c^\dagger_{j,\sigma'}\}=\delta_{ij}
+                \delta_{\sigma\sigma'}
+            \end{align}
+            Soit alors les transformations de Fourier
+            \begin{align}
+                &\widetilde{c}_{\sigma}(k)=\frac{1}{\sqrt{N}}\sum_re^{-ikr}
+                c_{\sigma}(r)
+                &\widetilde{c}^\dagger_{\sigma}(k)=\frac{1}{\sqrt{N}}\sum_re^{ikr}
+                c^\dagger_{\sigma}(r)
+            \end{align}
+            Alors, comme l'anti-commutateur est bilinéaire, on a que
+            \begin{align}
+                \{\widetilde{c}_\sigma(\bm{k}),
+                    \widetilde{c}_{\sigma'}(\bm{k'})\}
+                    =\frac1N\sum_{r,r'}e^{-irk-ir'k'}\{c_{\sigma}(r),
+                    c_{\sigma'}(r')\}=0\\
+                \{\widetilde{c}^\dagger_\sigma(\bm{k}),
+                    \widetilde{c}^\dagger_{\sigma'}(\bm{k'})\}
+                    =\frac1N\sum_{r,r'}e^{irk+ir'k'}\{c^\dagger_{\sigma}(r),
+                    c^\dagger_{\sigma'}(r')\}=0\\
+                \{\widetilde{c}_\sigma(\bm{k}),
+                    \widetilde{c}^\dagger_{\sigma'}(\bm{k'})\}
+                    =\frac1N\sum_{r,r'}e^{-irk+ir'k'}\{c_{\sigma}(r),
+                    c^\dagger_{\sigma'}(r')\}=\frac1N\sum_re^{-ir(k-k')}
+                    \delta_{\sigma\sigma'}\\
+                    =\delta_{kk'}\delta_{\sigma\sigma'}
+            \end{align}
 
             %Problème 6:
             \begin{problem}
@@ -100,6 +215,35 @@
                     \widetilde{c}_\sigma(\bm{k})
                 \end{align}
             \end{problem}
+            Soit l'opérateur $K$
+            \begin{align}
+                K&=-t\sum_{<i,j>,\sigma}\qty(c^\dagger_{i,\sigma}c_{j,\sigma}
+                +c^\dagger_{j,\sigma}c_{i,\sigma})\\
+                &=-t\sum_{R,r,\sigma}\qty(c^\dagger_{\sigma}(R+r)c_{\sigma}(R-r)
+                +c^\dagger_{\sigma}(R-r)c_{\sigma}(R+r))
+            \end{align}
+            avec
+            \begin{align}
+                &R=\frac{r_1+r_2}{2}
+                &&r=\frac{r_1-r_2}{2}
+            \end{align}
+            Alors
+            \begin{align}
+                K&=-\frac{t}{N}\sum_{R,r,\sigma,k,k'}\qty(
+                    c^\dagger_{\sigma}(k)c_\sigma(k')e^{i(R+r)k-i(R-r)k'}+
+                    c^\dagger_{\sigma}(k')c_\sigma(k)e^{i(R-r)k-i(R+r)k'}
+                )\\
+                &=-\frac{t}{N}\sum_{R,r,\sigma,k,k'}\qty(
+                    c^\dagger_{\sigma}(k)c_\sigma(k')e^{ir(k+k')+iR(k-k')}+
+                    c^\dagger_{\sigma}(k')c_\sigma(k)e^{-ir(k+k')+iR(k-k')}
+                )\\
+                &=-t\sum_{r,\sigma,k}\qty(
+                    c^\dagger_{\sigma}(k)c_\sigma(k)e^{i2rk}+
+                    c^\dagger_{\sigma}(k)c_\sigma(k)e^{-2irk}
+                )\\
+                &=-2t\sum_{r,\sigma,k}
+                    c^\dagger_{\sigma}(k)c_\sigma(k)\cos(2kr)
+            \end{align}
 
             %Problème 7:
             \begin{problem}
@@ -107,6 +251,16 @@
                 $n_\sigma(\bm{k})$ associés à des spins ou
                 des nombres d'ondes différents commutent.
             \end{problem}
+            Les opérateurs création et annihilation associés à des nombres
+            quantiques différents
+            anticommutent. Alors, comme l'opérateur
+            nombre est composé de deux opérateurs création et annihilation,
+            il faut utiliser deux fois les relations d'anti-commutation pour
+            faire traverser un autre opérateur création annihilation. Par
+            conséquent, les opérateurs nombres et les opérateurs création
+            annihilation associés à des nombres quantiques différents commutent.
+            Il en va de soi que les opérateurs nombre associés à des nombres
+            quantiques différents commutent.
 
             %Problème 8:
             \begin{problem}
