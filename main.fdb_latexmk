@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1683657086 "main.aux" "main.bbl" "main" 1683657807 0
+["bibtex main"] 1683741816 "main.aux" "main.bbl" "main" 1683741816 0
   "./refs.bib" 1683646474 1448 5e59b418a99c65f33029556e1167d53f ""
   "/usr/share/texmf-dist/bibtex/bst/base/plain.bst" 1680514707 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1683657806 1613 7a029f124d249d1c0136043e68ba09db "pdflatex"
+  "main.aux" 1683741814 1569 3319f3bd907a6564066c0562070f61b1 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1683657805 "main.tex" "main.pdf" "main" 1683657807 2
+["pdflatex"] 1683741812 "main.tex" "main.pdf" "main" 1683741816 2
   "/usr/share/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc" 1678899023 6938 5135be6a8802f13a7faf296d1959a1ab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1680514707 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1680514707 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -277,14 +277,13 @@
   "TitlePage.tex" 1683646474 916 604b52ca285619547f0b46ea2d9e7d5a ""
   "colors.sty" 1683646474 5563 118e5fa5599c67546069d67564b00e60 ""
   "commands.sty" 1683657282 4632 905bdc98fcb4269fef73eda3905fd2be ""
-  "figs/emblems/emblem_BISHOP.png" 1683646474 368471 2c7cb6ae4b4959e82cbd75d387a621e8 ""
-  "main.aux" 1683657806 1613 7a029f124d249d1c0136043e68ba09db "pdflatex"
-  "main.bbl" 1683657086 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
-  "main.out" 1683657806 544 e871d77791e56096f0a3c9ba84764958 "pdflatex"
-  "main.tex" 1683649690 785 415e3238bc32bbffac30a2d396a2aee7 ""
-  "main.toc" 1683657806 390 6b025f2b1dfc993023117a7bed206663 "pdflatex"
-  "sections/introduction.tex" 1683646474 222 ac18624848ee6e76387a584f7238778e ""
-  "sections/semaine2.tex" 1683657804 4613 e0c8f275e51c28b2af0bec6d00e8eff5 ""
+  "figs/emblems/emblem_UQTR.png" 1683646474 122523 13f123989266487df85d3efa16d64a15 ""
+  "main.aux" 1683741814 1569 3319f3bd907a6564066c0562070f61b1 "pdflatex"
+  "main.bbl" 1683741816 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
+  "main.out" 1683741814 544 e871d77791e56096f0a3c9ba84764958 "pdflatex"
+  "main.tex" 1683733030 781 e40f1bc7e708a0e3fb4b677d9c24ed38 ""
+  "main.toc" 1683741814 390 6b025f2b1dfc993023117a7bed206663 "pdflatex"
+  "sections/semaine2.tex" 1683734751 11609 6270f401f6ff5927da24de7bb26e6fbe ""
   "style.sty" 1683646474 5021 b2e08d6ba06e5d4243971046bd619b53 ""
   (generated)
   "main.aux"
@@ -293,3 +292,4 @@
   "main.pdf"
   "main.toc"
   (rewritten before read)
+  "main.aux"
