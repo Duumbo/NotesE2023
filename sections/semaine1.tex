@@ -1,0 +1,60 @@
+\documentclass{subfiles}[../main.tex]
+
+\begin{document}
+    \section{Semaine 1} % (fold)
+    \label{sec:Semaine 1}
+
+        \subsection{Vendredi le 5 mai} % (fold)
+        \label{sub:Vendredi le 5 mai}
+            Aujourd'hui, je m'intéresse au Pfaffian
+            \subsubsection{Pfaffian} % (fold)
+            \label{ssub:Pfaffian}
+                Le Pfaffian est non-nul pour des matrices anti-symétriques de
+                dimension paires seulement. En effet
+                \begin{align}
+                    \det\qty(A)&=\pfaf\qty(A)^2\qquad\text{Def.}
+                \end{align}
+                où $A=-A^{T}$. On peut montrer que le pfaffian est nul pour une
+                matrice de dimension impaire.
+                \begin{align}
+                    \det\qty(A)&=\det\qty(A^T)\\
+                    &=\det\qty(-A)\\
+                    &=(-1)^{\dim(A)}\det(A)\\
+                    \Rightarrow\ \det(A)=\pfaf(A)^2&=0\quad\text{si}\ \dim(A)\ \text{impaire}
+                \end{align}
+                Le corollaire de cette preuve est que le déterminant d'une matrice
+                anti-symétrique est toujours positif. Quelques propriétés à
+                garder en tête.
+                \begin{align}
+                    \pfaf\qty(BAB^T)&=\det(B)\pfaf(A),\qquad\forall B\in M_{2n}\\
+                    \pfaf\qty(A^{2m+1})&=(-1)^{nm}\pfaf\qty(A)^{2m+1}\\
+                    \frac1{\pfaf(A)}\pdv{\pfaf(A)}{x_i}&=
+                    \frac12\tr\qty(A^{-1}\pdv{A}{x_i})
+                \end{align}
+                Queleques autres propriétés qui peuvent être intéressante pour
+                réduire la dimension du pfaffian à calculer
+                \begin{align}
+                    \pfaf\qty(
+                    \begin{matrix}
+                        A_1&0\\0&A_2
+                    \end{matrix}
+                    )&=\pfaf\qty(A_1)\pfaf\qty(A_2)\\
+                    \pfaf\qty(
+                    \begin{matrix}
+                        0&M\\ M^T&0
+                    \end{matrix}
+                    )&=(-1)^{n(n-1)/2}\det(M)
+                \end{align}
+                Il existe une généralisation pour des matrices de dimension impaire,
+                où on ajoute des $1$ et des $-1$ à la dernière ligne et colonne.
+                Le pfaffian est donc bien défini pour cette nouvelle matrice.
+                Cette définition n'est pas très utile pour le projet. Quelques
+                autres propriétés et une bibliothèque peuvent être trouvés dans
+                la publication de \textit{Pfapack}\cite{pfapack}.
+
+            % subsubsection Pfaffian (end)
+
+        % subsection Vendredi le 5 mai (end)
+
+    % section Semaine 1 (end)
+\end{document}
