@@ -20,7 +20,7 @@ OUT = pdf
 OUT_MODE = pvc
 # Sets the generation of pdf files by pdflatex
 GENERATOR = pdflatex
-OPT = -interaction=batchmode
+OPT = -interaction=batchmode --shell-escape
 
 HIDE = @
 MAKE = make

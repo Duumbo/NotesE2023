@@ -1,7 +1,13 @@
 *.log
 *.fls
 *.aux
-*.fsb_latexmk
+*.fdb_latexmk
 *.fls
 *.out
 *.toc
+*.bbl
+*.blg
+*.o
+test
+nombre
+_minted-main
