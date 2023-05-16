@@ -1,0 +1,87 @@
+\documentclass{subfiles}[../main.tex]
+
+\begin{document}
+    \section{Semaine 3} % (fold)
+    \label{sec:Semaine 3}
+        \subsection{Lundi le 15 Mai} % (fold)
+        \label{sub:Lundi le 15 Mai}
+
+            \subsubsection{Exemple hamiltonien}
+            \label{sec:Exemple hamiltonien}
+                Pour diagonaliser l'hamiltonien, on veut trouver les sous-espaces
+                qui sont indépendants. On cherche donc à trouver les blocs de
+                l'hamiltonien. Pour ce faire, il faut encoder l'application de
+                $H$ sur nos états. Rappelons l'hamiltonien de Hubbard:
+                \begin{align}
+                    H&=U\sum_in_{i\uparrow}n_{i\downarrow}-
+                    \sum_{<i,j>,\sigma}t_{ij}\qty(c^\dagger_{i\sigma}
+                    c_{j\sigma}+c^\dagger_{j\sigma}
+                    c_{i\sigma})
+                \end{align}
+                La base de l'espace de Fock qu'on utilise sera l'ordre normal
+                énoncé plus haut. Alors on peut définir l'application des
+                opérateurs qui composent $H$ sur les vecteurs de la base.
+                \begin{align}
+                    c^\dagger_{i\sigma}\ket{n}&=
+                    \begin{cases}
+                        \texttt{xor } n, 00\cdots1\cdots00, &\text{ à la position }
+                        i\sigma, \text{si le bit } i\sigma \text{est nul.}\\
+                        0000 & \text{autrement.}
+                    \end{cases}
+                \end{align}
+                Or, cette notation peut mélanger le vecteur nul et l'état
+                $\ket{0}$. On peut régler ce problème en introduisant un bit de
+                signe. Alors tous les états sont représentés avec un $1$ préposant
+                tous les autres bits, le bit nul sera alors toujours le vecteur
+                nul.\\
+                Les opérateurs nombres sont simplement un \texttt{and} avec
+                le bitshift adéquat. Par exemple, si je veut calculer
+                $\bra{n}n_{i\uparrow}n_{i\downarrow}\ket{n}$, il faut
+                \begin{figure}[H]
+                \begin{minted}[linenos,frame=single]{nasm}
+MOV EAX, n
+MOV EBX, n
+SHL EAX, N
+AND EAX, EBX
+                \end{minted}
+                    \caption{Pseudo-assembly représentant comment appliquer
+                    l'opérateur $n_{i\uparrow}n_{i\downarrow}$, pour tous les
+                    $i$. La valeur $n$ représente l'état de Fock dans l'ordre
+                    normal, tandis que $N$ représente le nombre de site. Le
+                    résultat attendu se trouvera dans le registre \textbf{EAX},
+                    dans la première moitié du byte,
+                    pour les sites de $i=N-1$ jusqu'à $i=0$.}
+                \end{figure}
+                Cette implémentation du terme de l'hamiltonien a quelque
+                limitation qui sont facilement corrigeable. En effet, supposons
+                que nous avons les états $\ket{7}$ et $\ket{8}$, alors dépendant
+                quel état que l'on shifte à gauche, on n'aura pas le même résultat.
+                Mais ceci n'est pas important, car cet opérateur est diagonal
+                dans notre base, alors on peut simplement juste calculer cet
+                élément de matrice pour les éléments diagonaux.\\
+                Le produit scalaire des états s'implémente facilement avec des
+                opérations sur des nombres binaires, $\braket{n'}{n}$ s'écrit
+                \begin{figure}[H]
+                \begin{minted}[linenos,frame=single]{nasm}
+MOV EAX n'
+MOV EBX n
+XOR EAX EBX
+                \end{minted}
+                    \caption{Produit scalaire en $n$ et $n'$. Cette valeur sera
+                    $1$ si \textbf{EAX} est nul, $0$ pour toute autre valeur de
+                    \textbf{EAX}.}
+                \end{figure}
+                Le plus difficile est d'implémenter l'application de l'opérateur.
+                $(c^\dagger_ic_j+c^\dagger_jc_i)\ket{n'}$, pour tous les spins. Dans ce
+                cas, il y a des conditions que je ne pense pas être capable de
+                retirer.
+                Commençons par penser à quels sites qu'on a le droit de détruire.
+                Soit la bitstring $n_i$, alors les positions que j'ai le droit
+                de créer sont $\neg n_i$. Les positions que j'ai le droit de
+                détruire sont $n_i$. Ainsi, les positions que j'ai le droit
+                de détruire puis créer sont $(\neg n_j)\&n_i$.
+            % subsubsection Exemple hamiltonien (end)
+        % subsection Lundi le 15 Mai (end)
+
+    % section Semaine 3 (end)
+\end{document}
