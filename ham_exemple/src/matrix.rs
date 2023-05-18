@@ -2,12 +2,13 @@
 // Generates matrix by blocs
 
 mod operators;
+use crate::typedef::{Precision, Cluster};
 use crate::{N_SITE, CONS_T};
 
 #[inline(always)]
 fn sub_space_iter(
-    to_skip: &mut Vec<u32>,
-    sub_space: &mut Vec<Vec<f64>>,
+    to_skip: &mut Vec<Cluster>,
+    sub_space: &mut Vec<Vec<Precision>>,
     subspace_len: usize)
 {
     let mut to_skip_len = to_skip.len();
@@ -28,7 +29,7 @@ fn sub_space_iter(
                 sub_space[subspace_len].push(CONS_T);
             }
             else {
-                sub_space[subspace_len].push(0.0);
+                sub_space[subspace_len].push(Precision::from(0.0));
             }
         }
         // Check for new values
@@ -44,28 +45,28 @@ fn sub_space_iter(
 
 }
 
-pub fn gen_matrix_blocs() -> Vec<Vec<f64>> {
-    let mut skip: Vec<u32> = Vec::new();
-    let mut sub_space: Vec<Vec<f64>> = Vec::new();
+pub fn gen_matrix_blocs() -> Vec<Vec<Precision>> {
+    let mut skip: Vec<Cluster> = Vec::new();
+    let mut sub_space: Vec<Vec<Precision>> = Vec::new();
     sub_space.push(Vec::new());
     let mut subspace_len: usize = 0;
 
     // Iter on states
     for n_curr in 0 as u32..(1<<2*N_SITE){
-        if skip.contains(&n_curr) {
+        if skip.contains(&Cluster(n_curr.into())) {
             continue;
         }
         // Calcul du terme diagonal (premier élément de la matrice.)
         sub_space[subspace_len].push(
-            operators::terme_pot(n_curr)
+            operators::terme_pot(Cluster(n_curr.into()))
         );
 
         // Check si le sub space est de plus grande dimension que 1
-        let mut to_skip = vec![n_curr];
-        to_skip.append(&mut operators::terme_cin(n_curr));
+        let mut to_skip = vec![Cluster(n_curr.into())];
+        to_skip.append(&mut operators::terme_cin(Cluster(n_curr.into())));
         let mut guessed_dim = 1;
         for elem in to_skip.iter() {
-            if *elem != n_curr {
+            if *elem != Cluster(n_curr.into()) {
                 // Compte le nombre d'éléments différents.
                 guessed_dim += 1;
             }
@@ -82,7 +83,7 @@ pub fn gen_matrix_blocs() -> Vec<Vec<f64>> {
         subspace_len += 1;
         // Update skip list
         // Let's clean up values that we don't need
-        let cond = |skip_passed: &u32| skip_passed > &n_curr;
+        let cond = |skip_passed: &Cluster| skip_passed > &Cluster(n_curr.into());
         skip.retain(cond);
         to_skip.retain(cond);
         // Skip next time

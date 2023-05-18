@@ -7,6 +7,8 @@ edition = "2021"
 
 [dependencies]
 lapack = "0.19.0"
+num = "0.4.0"
+derive_more = "0.99.17"
 
 [profile.release]
 #lto = true
@@ -14,3 +16,56 @@ panic = "abort"
 opt-level = 3
 incremental = true
 codegen-units = 1
+
+[features]
+default = [
+    "double_precision",
+    "uint32",
+    "coefs_real"
+]
+f32_u32 = [
+    "single_precision",
+    "uint32",
+    "coefs_real"
+]
+f64_u32 = [
+    "double_precision",
+    "uint32",
+    "coefs_real"
+]
+f32_u128 = [
+    "single_precision",
+    "uint128",
+    "coefs_real"
+]
+f64_u128 = [
+    "double_precision",
+    "uint128",
+    "coefs_real"
+]
+c64_u32 = [
+    "single_precision",
+    "uint32",
+    "coefs_complex"
+]
+c64_u128 = [
+    "single_precision",
+    "uint128",
+    "coefs_complex"
+]
+c128_u32 = [
+    "double_precision",
+    "uint32",
+    "coefs_complex"
+]
+c128_u128 = [
+    "double_precision",
+    "uint128",
+    "coefs_complex"
+]
+single_precision = []
+double_precision = []
+uint32 = []
+uint128 = []
+coefs_real = []
+coefs_complex = []
