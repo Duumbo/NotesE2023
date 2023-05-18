@@ -1,97 +1,97 @@
-const N_SITE: u32 = 2;
-const CONS_T: u32 = 1;
-const CONS_U: u32 = 1;
+pub const N_SITE: u32 = 5;
+pub const CONS_T: u32 = 1;
+pub const CONS_U: u32 = 1;
 
-#[inline(always)]
-fn terme_pot(n: u32) -> u32 {
-    ((n << N_SITE) & n).count_ones() * CONS_U
-}
+mod operators;
 
-fn c_dag_c(n: u32, mask: u32) -> u32 {
-    if ((mask) & n) == mask {
-        // Can destroy
-        let new_n = n ^ mask;
-        let mask = mask << 1;
-        if (mask & new_n) == 0 {
-            return new_n ^ mask
-        }
-    }
-    return 0
-}
-
-fn c_c_dag(n: u32, mask: u32) -> u32 {
-    if ((mask) & n) == mask {
-        // Can destroy
-        let new_n = n ^ mask;
-        let mask = mask >> 1;
-        if (mask & new_n) == 0 {
-            return new_n ^ mask
-        }
-    }
-    return 0
-}
-
-fn terme_cin(n: u32) -> Vec<u32>{
-    let mut out: Vec<u32> = Vec::new();
-    for i in 0..(N_SITE-1) {
-        let mask1: u32 = 1 << i;
-        let mask2: u32 = 1 << i+N_SITE;
-        let mixed1 = c_dag_c(n, mask1);
-        let mixed2 = c_dag_c(n, mask2);
-        if mixed1 !=0 {out.push(mixed1);}
-        if mixed2 !=0 {out.push(mixed2);}
-    }
-    for i in (0..(N_SITE-1)).rev() {
-        let mask1: u32 = 1 << i+1;
-        let mask2: u32 = 1 << i+N_SITE+1;
-        let mixed1 = c_c_dag(n, mask1);
-        let mixed2 = c_c_dag(n, mask2);
-        if mixed1 !=0 {out.push(mixed1);}
-        if mixed2 !=0 {out.push(mixed2);}
-    }
-    if out.len() == 0 {out.push(n);}
-    out
-}
+use std::time::Instant;
 
 fn main() {
     // Générer la banque d'états
     // 0 .. 2^N
+    let now = Instant::now();
     let mut skip: Vec<u32> = Vec::new();
     let mut sub_space: Vec<Vec<u32>> = Vec::new();
     sub_space.push(Vec::new());
     let mut subspace_len: usize = 0;
 
-    // Iter on banque
-    for n_curr in 0 as u32..(2<<N_SITE){
-        println!("Iter: {}", n_curr);
+    // Iter on states
+    for n_curr in 0 as u32..(1<<2*N_SITE){
         if skip.contains(&n_curr) {
-            println!("Skipped");
             continue;
         }
-        // Compte le nombre de U à mettre sur cette diagonale
-        sub_space[subspace_len].push(terme_pot(n_curr));
+        // Calcul du terme diagonal (premier élément de la matrice.)
+        sub_space[subspace_len].push(
+            operators::terme_pot(n_curr)
+        );
 
-        // Termes hors diag
-        let mut bank: Vec<u32> = Vec::new();
-        let mut map: Vec<(u32, Vec<u32>)> = Vec::new();
-        bank.push(n_curr);
-        if n_curr != 0{
-            let mut to_skip = terme_cin(n_curr);
-            let mut b: bool = true;
-            for elem in to_skip.iter() {
-                b = b & bank.contains(&elem);
+        // Check si le sub space est de plus grande dimension que 1
+        let mut to_skip = vec![n_curr];
+        to_skip.append(&mut operators::terme_cin(n_curr));
+        let mut guessed_dim = 1;
+        for elem in to_skip.iter() {
+            if *elem != n_curr {
+                // Compte le nombre d'éléments différents.
+                guessed_dim += 1;
             }
-            map.push((n_curr, to_skip.clone()));
-            while ! b {
-                let mut tmp = terme_cin(n);
-                map.push(())
+        }
+
+        // Si la dimension du sous-espace est plus grande qu'un, il faut trouver
+        // tout le sous-espace
+        if guessed_dim > 1 {
+            let mut to_skip_len = to_skip.len();
+            let mut i = 1;
+            while i < to_skip_len {
+                let state = to_skip[i];
+
+                // Get the diag
+                sub_space[subspace_len].push(
+                    operators::terme_pot(state)
+                );
+
+                // Get other elements
+                let t = operators::terme_cin(state);
+                for m in (0..i).rev() {
+                    if t.contains(&to_skip[m]) {
+                        // Push cons_t
+                        sub_space[subspace_len].push(CONS_T);
+                    }
+                    else {
+                        sub_space[subspace_len].push(0);
+                    }
+                }
+                // Check for new values
+                for m in t.into_iter() {
+                    if ! to_skip.contains(&m) {
+                        to_skip.push(m);
+                        to_skip_len += 1;
+                    }
+                }
+                i += 1
+
             }
         }
 
         // Change de bloc
         sub_space.push(Vec::new());
         subspace_len += 1;
-        println!("{:?}", sub_space);
+        // Update skip list
+        // Let's clean up values that we don't need
+        let cond = |skip_passed: &u32| skip_passed > &n_curr;
+        skip.retain(cond);
+        to_skip.retain(cond);
+        // Skip next time
+        skip.append(&mut to_skip);
     }
 
+    println!("Time taken: {:.2?}", now.elapsed());
+    println!("Taille du système: {}", N_SITE);
+    println!("Nombres de blocs: {}", sub_space.len());
+    // Taille du bloc maximum
+    let mut max = 0;
+    for n in sub_space.iter() {
+        if n.len() > max { max = n.len();}
+    }
+    println!("Taille du bloc maximal: {}", max);
 }
+
