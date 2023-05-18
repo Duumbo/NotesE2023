@@ -4,8 +4,8 @@
 use crate::{N_SITE, CONS_U};
 
 #[inline(always)]
-pub fn terme_pot(n: u32) -> u32 {
-    ((n << N_SITE) & n).count_ones() * CONS_U
+pub fn terme_pot(n: u32) -> f64 {
+    ((n << N_SITE) & n).count_ones() as f64 * CONS_U
 }
 
 fn c_dag_c(n: u32, mask: u32) -> u32 {
@@ -56,11 +56,11 @@ pub fn terme_cin(n: u32) -> Vec<u32>{
 
 #[test]
 fn test_terme_potentiel() {
-    assert_eq!(0, terme_pot(1));
-    assert_eq!(0, terme_pot(3));
-    assert_eq!(1 * CONS_U, terme_pot(5));
-    assert_eq!(1 * CONS_U, terme_pot(11));
-    assert_eq!(2 * CONS_U, terme_pot(15));
+    assert_eq!(0.0 , terme_pot(1));
+    assert_eq!(0.0, terme_pot(3));
+    assert_eq!(1.0 * CONS_U, terme_pot(5));
+    assert_eq!(1.0 * CONS_U, terme_pot(11));
+    assert_eq!(2.0 * CONS_U, terme_pot(15));
 }
 
 #[test]
